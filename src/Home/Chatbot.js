@@ -574,7 +574,7 @@ return (
 {isOpen && (
         <div
   ref={chatbotRef}
-  className="fixed bottom-12 right-0 w-[340px] h-[599px] flex flex-col z-50 overflow-hidden chatbot-container"
+  className={`fixed bottom-12 right-0 w-[340px] h-[599px] flex flex-col z-50 overflow-hidden chatbot-container${isDark ? ' chatbot-dark' : ''}`}
   style={{
     backgroundImage: isDark ? "url('/devicebaba-dark.svg')" : "url('/devicebaba.svg')",
    backgroundSize: isDark ? '106% auto' : 'contain',
@@ -1334,7 +1334,45 @@ style={{ color: isDark ? '#e2e8f0' : '#111827' }}
           }  
         } 
 
-         
+         /* =============================================
+   DARK MODE ONLY — background-size corrections
+   per breakpoint (light mode untouched)
+   ============================================= */
+
+/* 1280–1400px (laptop 110% zoom): container 283×550 → needs 117% */
+@media screen and (max-width: 1400px) and (min-width: 1280px) {
+  .chatbot-dark {
+    background-size: 117% auto !important;
+  }
+}
+
+/* Mobile portrait ≤698px height, ≥551px: container 273×450 → needs 99% */
+@media screen and (max-width: 1265px) and (max-height: 698px) and (min-height: 551px) {
+  .chatbot-dark {
+    background-size: 99% auto !important;
+  }
+}
+
+/* Mobile ≤551px height: container 280×calc(100vh-60) → needs 108% */
+@media screen and (max-height: 551px) and (max-width: 1265px) {
+  .chatbot-dark {
+    background-size: 108% auto !important;
+  }
+}
+
+/* Small mobile 530–450px height: container 260×calc(100vh-40) → needs 107% */
+@media screen and (max-height: 530px) and (min-height: 450px) {
+  .chatbot-dark {
+    background-size: 107% auto !important;
+  }
+}
+
+/* Very small mobile ≤449px height: container 260×calc(100vh-40) → needs 107% */
+@media screen and (max-height: 449px) {
+  .chatbot-dark {
+    background-size: 107% auto !important;
+  }
+}
       `}</style>
     </>
   );
