@@ -1,13 +1,282 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* ─── DARK MODE (default) ────────────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --color-primary:    #0d0f16;
+  --color-secondary:  #13161f;
+  --color-card:       #181c2a;
+  --color-card-alt:   #0f1525;
+  --color-card-hover: #1e2235;
+  --color-muted:      #8892a4;
+  --color-border:     #1e2235;
+  --color-text-base:    #ffffff;
+  --color-text-heading: #ffffff;
+  --gradient-cta: linear-gradient(135deg, #1E3A8A 0%, #1E1B4B 100%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ─── LIGHT MODE ─────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-primary:    #f0f4ff;
+  --color-secondary:  #e6ecf8;
+  --color-card:       #ffffff;
+  --color-card-alt:   #f5f8ff;
+  --color-card-hover: #edf1fd;
+  --color-muted:      #556080;
+  --color-border:     #c5d0e8;
+  --color-text-base:    #0d0f16;
+  --color-text-heading: #0d0f16;
+  --gradient-cta: linear-gradient(135deg, #1E3A8A 0%, #1E1B4B 100%);
+}
+
+/* ─── BASE ───────────────────────────────────────────────────────────────── */
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--color-primary);
+    color: var(--color-text-base);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--color-text-heading);
+  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--color-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3d7eff; }
+}
+
+/* ─── UTILITIES ──────────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-blue-gradient {
+    background: linear-gradient(90deg, #60b4ff, #3d7eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  [data-theme="light"] .text-blue-gradient {
+    background: linear-gradient(90deg, #1a4fcf, #3d7eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(61,126,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,126,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ★ UTILITY CLASS 1: .dark-section
+   Add this to ANY div/section that has a DARK background and should
+   ALWAYS show white text — in BOTH light AND dark mode.
+   Examples: Provinyx card, CTA gradient cards, WhyAcespire panel,
+             Hero cards with dark inline backgrounds, Timeline cards
+             on dark background, etc.
+   Usage: className="dark-section rounded-2xl ..."
+═══════════════════════════════════════════════════════════════════ */
+.dark-section,
+.dark-section * {
+  /* In dark mode — works naturally, no change needed */
+}
+
+/* In light mode: force all text inside to white */
+[data-theme="light"] .dark-section h1,
+[data-theme="light"] .dark-section h2,
+[data-theme="light"] .dark-section h3,
+[data-theme="light"] .dark-section h4,
+[data-theme="light"] .dark-section h5,
+[data-theme="light"] .dark-section h6,
+[data-theme="light"] .dark-section p,
+[data-theme="light"] .dark-section span:not(.text-blue-gradient):not(.text-blue-accent):not([class*="text-blue"]),
+[data-theme="light"] .dark-section li,
+[data-theme="light"] .dark-section label,
+[data-theme="light"] .dark-section .text-white,
+[data-theme="light"] .dark-section .text-muted {
+  color: rgba(255, 255, 255, 0.9) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+}
+/* Slightly dimmer for muted/secondary text inside dark-section */
+[data-theme="light"] .dark-section .text-muted,
+[data-theme="light"] .dark-section [class*="text-white\/"] {
+  color: rgba(255, 255, 255, 0.65) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.65) !important;
+}
+/* Keep blue gradient text working inside dark-section */
+[data-theme="light"] .dark-section .text-blue-gradient {
+  background: linear-gradient(90deg, #60b4ff, #3d7eff) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+/* Keep blue-accent text working */
+[data-theme="light"] .dark-section .text-blue-accent {
+  color: #60b4ff !important;
+  -webkit-text-fill-color: #60b4ff !important;
+}
+[data-theme="light"] .dark-section .text-blue-light {
+  color: #93c5fd !important;
+  -webkit-text-fill-color: #93c5fd !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ★ UTILITY CLASS 2: .light-card
+   Add this to ANY card/div that has a DARK inline background
+   (rgba(24,28,42,...) etc.) and should become WHITE in light mode.
+   Examples: Pillar cards, Agent cards, Stat cards, Case study cards,
+             Timeline cards, Step cards, etc.
+   Usage: className="light-card rounded-2xl border ..."
+═══════════════════════════════════════════════════════════════════ */
+
+/* Dark mode: no change, inherits dark styling */
+.light-card {}
+
+/* Light mode: override to white card with blue border */
+[data-theme="light"] .light-card {
+  background: #ffffff !important;
+  border-color: rgba(61, 126, 255, 0.2) !important;
+  box-shadow: 0 2px 20px rgba(61, 126, 255, 0.07) !important;
+}
+[data-theme="light"] .light-card h1,
+[data-theme="light"] .light-card h2,
+[data-theme="light"] .light-card h3,
+[data-theme="light"] .light-card h4,
+[data-theme="light"] .light-card p,
+[data-theme="light"] .light-card li {
+  color: #0d0f16 !important;
+  -webkit-text-fill-color: #0d0f16 !important;
+}
+[data-theme="light"] .light-card .text-white {
+  color: #0d0f16 !important;
+  -webkit-text-fill-color: #0d0f16 !important;
+}
+[data-theme="light"] .light-card .text-muted,
+[data-theme="light"] .light-card [class*="text-white\/"] {
+  color: #556080 !important;
+  -webkit-text-fill-color: #556080 !important;
+}
+/* Keep blue-accent text working inside light-card */
+[data-theme="light"] .light-card .text-blue-accent {
+  color: #3d7eff !important;
+  -webkit-text-fill-color: #3d7eff !important;
+}
+[data-theme="light"] .light-card .text-blue-gradient {
+  background: linear-gradient(90deg, #1a4fcf, #3d7eff) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+/* Icon backgrounds inside light-card */
+[data-theme="light"] .light-card .bg-white\/5,
+[data-theme="light"] .light-card .bg-white\/10,
+[data-theme="light"] .light-card .bg-white\/8 {
+  background-color: rgba(61,126,255,0.08) !important;
+}
+[data-theme="light"] .light-card .border-white\/6,
+[data-theme="light"] .light-card .border-white\/10,
+[data-theme="light"] .light-card .border-white\/8 {
+  border-color: rgba(61,126,255,0.2) !important;
+}
+/* Hover state for light-card */
+[data-theme="light"] .light-card:hover {
+  box-shadow: 0 8px 32px rgba(61,126,255,0.14) !important;
+  border-color: rgba(61,126,255,0.4) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   GLOBAL LIGHT MODE — text-white → dark
+   (for elements NOT inside dark-section or light-card)
+═══════════════════════════════════════════════════════════════════ */
+[data-theme="light"] .text-white        { color: #0d0f16 !important; }
+[data-theme="light"] .text-white\/80    { color: rgba(13,15,22,0.82) !important; }
+[data-theme="light"] .text-white\/75    { color: rgba(13,15,22,0.75) !important; }
+[data-theme="light"] .text-white\/70    { color: rgba(13,15,22,0.70) !important; }
+[data-theme="light"] .text-white\/60    { color: rgba(13,15,22,0.62) !important; }
+[data-theme="light"] .text-white\/50    { color: rgba(13,15,22,0.52) !important; }
+
+[data-theme="light"] .bg-card           { background-color: #ffffff !important; }
+[data-theme="light"] .bg-card-alt       { background-color: #f5f8ff !important; }
+[data-theme="light"] .bg-card-hover     { background-color: #edf1fd !important; }
+[data-theme="light"] .border-border     { border-color: #c5d0e8 !important; }
+[data-theme="light"] .bg-white\/5       { background-color: rgba(61,126,255,0.05) !important; }
+[data-theme="light"] .bg-white\/8       { background-color: rgba(61,126,255,0.07) !important; }
+[data-theme="light"] .bg-white\/10      { background-color: rgba(61,126,255,0.09) !important; }
+[data-theme="light"] .bg-white\/15      { background-color: rgba(61,126,255,0.11) !important; }
+[data-theme="light"] .border-white\/6   { border-color: rgba(61,126,255,0.12) !important; }
+[data-theme="light"] .border-white\/8   { border-color: rgba(61,126,255,0.15) !important; }
+[data-theme="light"] .border-white\/10  { border-color: rgba(61,126,255,0.18) !important; }
+[data-theme="light"] .border-white\/15  { border-color: rgba(61,126,255,0.25) !important; }
+[data-theme="light"] .border-white\/20  { border-color: rgba(61,126,255,0.28) !important; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PARTNERS SECTION — always dark background, always visible text
+═══════════════════════════════════════════════════════════════════ */
+.partners-dark {
+  background-color: #13161f !important;
+  border-color: #1e2235 !important;
+}
+[data-theme="light"] .partners-dark {
+  background-color: #13161f !important;
+  border-color: #1e2235 !important;
+}
+/* Fix: "Strategic Partners:" label — force to light muted color */
+.partners-dark .partners-label {
+  color: #8892a4 !important;
+  -webkit-text-fill-color: #8892a4 !important;
+}
+/* Fix: all text/spans inside partners dark stays readable */
+[data-theme="light"] .partners-dark span,
+[data-theme="light"] .partners-dark p,
+[data-theme="light"] .partners-dark div {
+  color: rgba(255,255,255,0.6) !important;
+}
+[data-theme="light"] .partners-dark .text-muted {
+  color: #8892a4 !important;
+  -webkit-text-fill-color: #8892a4 !important;
+}
+[data-theme="light"] .partners-dark [class*="text-muted"] {
+  color: #8892a4 !important;
+  opacity: 1 !important;
+}
+/* divider line inside partners */
+[data-theme="light"] .partners-dark .bg-border { background-color: #1e2235 !important; }
+/* Case study / blog title block — always white in light mode */
+[data-theme="light"] .page-title-block {
+  background: #ffffff !important;
+  box-shadow: 0 2px 20px rgba(61,126,255,0.06);
+}
+[data-theme="dark"] .page-title-block {
+  background: transparent;
+}
+.text-always-white,
+.text-always-white * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
