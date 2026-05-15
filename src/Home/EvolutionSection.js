@@ -13,8 +13,8 @@ const EvolutionSection = () => {
           <polygon points="10,2 13,8 19,8 14,12 16,18 10,14 4,18 6,12 1,8 7,8" />
         </svg>
       ),
-      title: 'The Vision',
-      description: 'We envision a world where every product authenticity is verifiable, traceable, and trusted — empowering global supply chains with digital product identities that set a new standard of transparency across the entire product lifecycle.',
+      title: 'Our Vision',
+      description: 'We envision a future where every product carries a verifiable, trusted digital identity - redefining transparency and accountability across global supply chains.',
     },
     {
       icon: (
@@ -22,8 +22,8 @@ const EvolutionSection = () => {
           <path d="M10 2L12.5 7.5L18 8L14 12L15 17.5L10 14.5L5 17.5L6 12L2 8L7.5 7.5Z" />
         </svg>
       ),
-      title: 'The Mission',
-      description: 'We are dedicated to delivering cutting-edge technology solutions that protect product integrity and enhance operational efficiency. By actively combating counterfeiting and fostering continuous innovation, we empower businesses to strengthen their supply chains and earn lasting consumer trust.',
+      title: 'Our Mission',
+      description: 'We protect product integrity through innovative technology and anti-counterfeiting solutions. Enabling businesses to strengthen operations and build unwavering consumer confidence.',
     },
   ];
 
@@ -73,7 +73,7 @@ const EvolutionSection = () => {
             </div>
           </div>
 
-          {/* Right — Target-evolution.png */}
+          {/* Right - Target-evolution.png */}
           <div
             ref={rightRef}
             className="flex items-center justify-center"
@@ -101,7 +101,7 @@ const EvolutionSection = () => {
               <div className="absolute inset-0 flex items-center justify-center p-8">
                 <img
                   src="/Target-evolution.png"
-                  alt="Our Evolution — Target"
+                  alt="Our Evolution - Target"
                   className="w-full h-full object-contain transition-all duration-500"
                   draggable={false}
                   onMouseEnter={() => setImgHovered(true)}

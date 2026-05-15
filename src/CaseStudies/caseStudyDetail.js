@@ -36,7 +36,7 @@ const formatContent = (content) => {
         );
       }
 
-      // ── Numbered items — FIX 2: always inline "N. Title: desc" ──
+      // ── Numbered items - FIX 2: always inline "N. Title: desc" ──
       if (clean.match(/^\d+\.\s[A-Z]/)) {
         const dotIdx = clean.indexOf('. ');
         const num  = clean.slice(0, dotIdx);
@@ -45,7 +45,7 @@ const formatContent = (content) => {
         const hasColon = colonIdx > 0 && colonIdx < 80;
 
         if (hasColon) {
-          // "N. Title: description" — all on one line
+          // "N. Title: description" - all on one line
           const title = rest.slice(0, colonIdx).trim();
           const desc  = rest.slice(colonIdx + 1).trim();
           return (
@@ -65,7 +65,7 @@ const formatContent = (content) => {
           );
         }
 
-        // No colon — numbered point without description
+        // No colon - numbered point without description
         return (
           <p
             key={`n-${index}`}
@@ -131,7 +131,7 @@ const cs = filtered[safeIdx];
   );
   const prev = () => setIdx((i) => (i - 1 + filtered.length) % filtered.length);
 
-  // FIX 3 — auto-advance every 5 seconds
+  // FIX 3 - auto-advance every 5 seconds
   useEffect(() => {
     if (filtered.length <= 1) return;
     const timer = setInterval(next, 5000);
@@ -320,7 +320,7 @@ const HeroBlock = ({ cs }) => {
 
   return (
     <>
-      {/* ── Section 1: Image only — no text on top of image ── */}
+      {/* ── Section 1: Image only - no text on top of image ── */}
       <section
         className="relative pt-16"
         style={{ background: '#000' }}
@@ -347,7 +347,7 @@ const HeroBlock = ({ cs }) => {
         </div>
       </section>
 
-      {/* ── Section 2: Title block — completely separate, always correct bg ── */}
+      {/* ── Section 2: Title block - completely separate, always correct bg ── */}
       <section
         style={{
           background:   isDark ? '#13161f' : '#ffffff',
@@ -439,6 +439,16 @@ const MainContent = ({ cs }) => {
               opacity:   inView ? 1 : 0,
               transform: inView ? 'translateY(0)' : 'translateY(30px)',
               transition: 'all 0.8s cubic-bezier(.4,0,.2,1)',
+              borderTop: '1px solid rgba(255,255,255,0.08)',
+borderRight: '1px solid rgba(255,255,255,0.08)',
+borderBottom: '1px solid rgba(255,255,255,0.08)',
+borderLeft: '1px solid rgba(255,255,255,0.08)',
+padding: '24px',
+borderTopRightRadius: '16px',
+borderBottomRightRadius: '16px',
+borderBottomLeftRadius: '16px',
+borderTopLeftRadius: '16px',
+              
             }}
           >
             {/* Client */}

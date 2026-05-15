@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './hooks/useTheme';
 import Navbar from './components/Navbar';
+import ScrollToTop from './components/ScrollToTop';
 
 import HomePage        from './Home';
 import AboutUs         from './AboutUs';
@@ -25,6 +26,7 @@ import Automation            from './Services/Automation';
 import InvoiceAgent   from './Products/InvoiceAgent';
 import MeetingManager from './Products/MeetingManager';
 import ServiceTemplate from './Services/ServiceTemplate';
+import { ContactModalProvider } from './context/ContactModalContext';
 
 
 
@@ -32,7 +34,11 @@ function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
+       <ScrollToTop />  
+       <ContactModalProvider> 
         <Navbar />
+
+
         <Routes>
           <Route path="/"                          element={<HomePage />} />
           <Route path="/about"                     element={<AboutUs />} />
@@ -57,6 +63,7 @@ function App() {
           <Route path="/services/:serviceId" element={<ServiceTemplate />} />
           <Route path="*"                          element={<HomePage />} />
         </Routes>
+            </ContactModalProvider>  
       </BrowserRouter>
     </ThemeProvider>
   );

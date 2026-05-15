@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
+import { useContactModal } from '../context/ContactModalContext';
+
+
 
 const CTASection = () => {
   const [ref, inView] = useInView();
+  const { openModal } = useContactModal();
+
 
   return (
     <section className="relative py-16 lg:py-24 bg-primary overflow-hidden">
@@ -31,23 +36,22 @@ const CTASection = () => {
               className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-always-white leading-tight mb-5 max-w-2xl mx-auto"
               style={{ opacity:inView?1:0, transform:inView?'translateY(0)':'translateY(20px)', transition:'all 0.7s ease 0.2s' }}
             >
-              Ready to redefine your enterprise intelligence?
+             Partner with us to bring your product vision to life
             </h2>
 
             <p
               className="text-[#000000]/70 font-body text-base sm:text-lg mb-10 max-w-lg mx-auto"
               style={{ opacity:inView?1:0, transition:'all 0.7s ease 0.35s' }}
             >
-              Join the league of forward-thinking companies leveraging Acespire to dominate their markets.
+              Get in touch with our team
             </p>
 
             <div style={{ opacity:inView?1:0, transition:'all 0.7s ease 0.5s' }}>
-              <Link
-                to="/contact"
+           <button onClick={() => openModal({ enquiryType: 'business', sourcePage: 'Home Page' })}
                 className="inline-flex items-center px-9 py-4 bg-white hover:bg-gray-50 text-blue-dark text-base font-display font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)] active:scale-95"
               >
                 Let's Talk Business
-              </Link>
+             </button>
             </div>
           </div>
         </div>

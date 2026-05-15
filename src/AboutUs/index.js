@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
 import Footer from '../components/Footer';
 import Chatbot from '../Home/Chatbot';
+import MagicRings from '../components/MagicRings';
+import { useTheme } from '../hooks/useTheme'; 
 
 // ─── Reusable fade wrapper ───────────────────────────────────────────────────
 const Reveal = ({ children, direction = 'up', delay = 0, className = '' }) => {
@@ -30,8 +32,19 @@ const Reveal = ({ children, direction = 'up', delay = 0, className = '' }) => {
 };
 
 // ─── 1. HERO ─────────────────────────────────────────────────────────────────
+// ─── Drop this HeroSection into AboutUs.jsx ──────────────────────────────────
+// 1. Add this import near the top of AboutUs.jsx (alongside your other imports):
+//      import MagicRings from '../components/MagicRings';
+//    (adjust path to wherever you place MagicRings.jsx)
+//
+// 2. Replace the existing HeroSection function entirely with this one.
+// ─────────────────────────────────────────────────────────────────────────────
+
 const HeroSection = () => {
   const [visible, setVisible] = useState(false);
+  const { theme } = useTheme();       // already imported in AboutUs
+  const isDark = theme === 'dark';
+
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 80);
     return () => clearTimeout(t);
@@ -45,7 +58,46 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary">
-      {/* Fix 2 — Green gradient bottom-left, blue gradient bottom-right */}
+
+      {/* ── MagicRings - full-bleed background, perfectly centred ── */}
+      <div className="absolute inset-0">
+        <MagicRings
+          // Blue → indigo matches site palette in both themes
+          color={isDark ? '#3d7eff' : '#2563eb'}
+          colorTwo={isDark ? '#818cf8' : '#6366f1'}
+          ringCount={6}
+          speed={0.55}          // slow, ambient
+          attenuation={12}      // tighter glow - keeps rings clean
+          lineThickness={1.4}
+          baseRadius={0.22}     // rings start small so they don't crowd the text
+          radiusStep={0.09}
+          scaleRate={0.12}
+          opacity={isDark ? 0.72 : 0.55}   // subtler in light mode
+          noiseAmount={0.04}    // very faint grain
+          ringGap={1.6}
+          fadeIn={0.65}
+          fadeOut={0.55}
+          rotation={18}         // slight tilt for visual interest
+          followMouse={true}
+          mouseInfluence={0.18} // gentle - rings breathe toward cursor
+          hoverScale={1.12}
+          parallax={0.06}
+          clickBurst={false}
+          blur={0}
+        />
+      </div>
+
+      {/* Darken ring edges so text is always readable */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: isDark
+            ? 'radial-gradient(ellipse 70% 70% at 50% 50%, transparent 30%, rgba(7,9,18,0.60) 100%)'
+            : 'radial-gradient(ellipse 70% 70% at 50% 50%, transparent 30%, rgba(240,245,255,0.55) 100%)',
+        }}
+      />
+
+      {/* Original accent blobs - kept exactly as before */}
       <div
         className="absolute bottom-0 left-0 w-[520px] h-[520px] pointer-events-none"
         style={{
@@ -58,10 +110,10 @@ const HeroSection = () => {
           background: 'radial-gradient(ellipse at top right, rgba(61,126,255,0.28) 0%, rgba(61,126,255,0.10) 40%, transparent 70%)',
         }}
       />
-      {/* Soft top center glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-blue-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-28 pb-20">
+      {/* ── Content - unchanged from original ── */}
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-28 pb-20">
         {/* Badge */}
         <div
           style={fade(0.1)}
@@ -73,10 +125,10 @@ const HeroSection = () => {
         {/* Headline */}
         <h1
           style={fade(0.25)}
-          className="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6"
+          className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-6"
         >
-          <span className="text-white block">We Solve the</span>
-          <span className="text-blue-gradient">Unsolvable.</span>
+          <span className="text-white block">Trusted Expertise.</span>
+          <span className="text-blue-gradient">Transformative Impact.</span>
         </h1>
 
         {/* Subtitle */}
@@ -84,7 +136,7 @@ const HeroSection = () => {
           style={fade(0.4)}
           className="text-muted font-body text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-10"
         >
-          With over four decades of collective experience across IT and management disciplines, Acespire Solutions brings unmatched expertise to every engagement. Our cutting-edge services and purpose-built products are designed to help enterprises integrate seamlessly, operate efficiently, and grow with confidence in today's dynamic digital landscape.
+          Acespire brings decades of deep expertise and purpose-built solutions for today's digital enterprises.
         </p>
 
         {/* CTA */}
@@ -116,7 +168,7 @@ const QuoteSection = () => {
 
   return (
     <section className="relative py-24 bg-secondary overflow-hidden">
-      {/* Fix 5 — inject Noto Sans for the quote */}
+      {/* Fix 5 - inject Noto Sans for the quote */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,700&display=swap');
         .quote-noto { font-family: 'Noto Sans', sans-serif; font-weight: 700; font-style: italic; }
@@ -138,14 +190,12 @@ const QuoteSection = () => {
           </svg>
         </div>
 
-        {/* Fix 5 — Noto Sans Bold Italic for quote text */}
+        {/* Fix 5 - Noto Sans Bold Italic for quote text */}
         <blockquote
-          className="quote-noto text-xl sm:text-2xl lg:text-3xl text-white leading-relaxed mb-8"
+          className="quote-noto text-xl sm:text-1xl lg:text-2xl text-white leading-relaxed mb-8"
           style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease 0.15s' }}
         >
-          "We didn't start Acespire to be another agency. We started it to be
-          the catalyst for the next industrial revolution—one where humans
-          and AI work as a singular, optimized force."
+          "Acespire began as a consulting company ,delivering expert IT and supply chain consulting services to businesses that needed more than generic advice. We rolled up our sleeves, worked closely with our clients, and solved real problems. Consulting was and remains our bread and butter"
         </blockquote>
 
         {/* Body */}
@@ -154,14 +204,18 @@ const QuoteSection = () => {
           style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(20px)', transition: 'all 0.6s ease 0.3s' }}
         >
           <p className="text-muted font-body text-sm sm:text-base leading-relaxed">
-            Acespire was born out of a simple observation: large enterprises were drowning in data but
-            starving for insights. After spending a decade in the trenches of global supply chains, I saw
-            the recurring failure of 'traditional' digital transformation.
+            With every engagement, every supply chain challenge we untangled, and every digital transformation we guided, Acespire accumulated something invaluable: deep, hard-earned domain knowledge. We began to see patterns. We identified gaps that no existing product in the market was addressing.
           </p>
           <p className="text-muted font-body text-sm sm:text-base leading-relaxed">
-            Our philosophy is simple—technology should be invisible but impactful. We specialize in building
-            Agentic AI solutions that don't just recommend actions, but perform them autonomously within a
-            secure enterprise framework.
+            So we built them ourselves.
+          </p>
+          <p className="text-muted font-body text-sm sm:text-base leading-relaxed">
+            That insight gave birth to Acespire's product journey - purpose-built solutions engineered from years of frontline consulting experience. Our products are not ideas from a boardroom. They are answers to real problems we encountered in the field, refined through expertise, and built for the enterprises we know best.
+          </p>
+          <p className="text-muted font-body text-sm sm:text-base leading-relaxed">
+            Today, Acespire stands at the intersection of consulting excellence and product innovation. Consulting is our foundation ; it keeps us grounded, client-focused, and sharp. Our products are our evolution ;a testament to how deeply we understand the industries we serve.
+If consulting is our bread and butter, our products are the cake - and at Acespire, our focus is to deliver best for both.
+
           </p>
         </div>
 
@@ -289,33 +343,43 @@ const PillarsSection = () => {
 // ─── 4. TIMELINE ─────────────────────────────────────────────────────────────
 const timelineItems = [
   {
-    year: '2018', side: 'right',
-    title: 'The Genesis',
-    desc:  'Acespire was founded with a singular focus — supply chain optimization. From the ground up, the team was carefully assembled, the mission was defined, and execution began with purpose and precision.',
+    year: '2019', side: 'right',
+    title: 'It All Started Here',
+    desc:  'Acespire emerged from independent consulting, fuelled by rising demand for data integration expertise and a belief in building through partnerships, not transactions.',
   },
   {
     year: '2020', side: 'left',
-    title: 'Digital Pivot',
-    desc:  'This pivotal chapter Acespire established the company as a trusted transformation partner capable of leading businesses through their most critical technological shifts.',
+    title: 'Building Momentum',
+    desc:  'Kicked off multiple strategic projects and established our foundational partnership with o9 Solutions - setting the tone for how we grow: collaboratively.',
   },
   {
-    year: '2025', side: 'right',
-    title: 'Agentic AI Expansion',
-    desc:  'Acespire inaugurated its AI Research Lab, launching HireOn AI and DigiMark AI agents to automate critical business workflows. This expansion positioned Acespire at the forefront of enterprise AI, blending deep industry knowledge with intelligent autonomous technology.',
+    year: '2021-2022', side: 'right',
+    title: 'Expanding Our Reach',
+    desc:  'Grew our delivery capabilities across the US and India, achieved AWS partnership, and built a strong track record of successful project delivery.',
   },
   {
-    year: '2026', side: 'left',
-    title: 'Provinyx Launch',
-    desc:  'Acespire channeled years of consulting expertise into its first flagship product — Provinyx, a Digital Product Passport platform redefining supply chain transparency. Its launch marked the company evolution from a pure consulting firm into a product-driven innovator.',
+    year: '2023', side: 'left',
+    title: 'R&D & Global Presence',
+    desc:  'Launched a Centre of Excellence for data integration and supply chain best practices - which quickly evolved into a product innovation hub. Opened our Mexico office to serve a broader global market.',
   },
   {
     year: '2024', side: 'right',
-    title: 'The Global Stage',
-    desc:  'Expanding our presence to 5 continents with a workforce of 200+ elite consultants and AI engineers.',
+    title: 'Product development',
+    desc:  'Expanded toward building proprietary products. Conceived the idea of Agentic AI solutions designed to automate and elevate enterprise supply chain operations.',
+  },
+   {
+    year: '2025', side: 'left',
+    title: 'Two Divisions, One Mission',
+    desc:  'Established two clear business pillars - Services and Products. Partnered with Databricks and Snowflake, and brought Agentic AI from concept to reality.',
+  },
+  {
+    year: '2026', side: 'right',
+    title: 'Just Getting Started',
+    desc:  'Launched Provinyx, our flagship Digital Product Passport platform. Expanding strategic partnerships across the supply chain ecosystem and scaling our product portfolio for global impact.',
   },
 ];
 
-// Fix 3 — Mobile: line on far left, all cards on right
+// Fix 3 - Mobile: line on far left, all cards on right
 //          Desktop: alternating left/right
 const TimelineItem = ({ item, index }) => {
   const [ref, inView] = useInView();
@@ -358,7 +422,7 @@ const TimelineItem = ({ item, index }) => {
       </div>
 
       {/* ── DESKTOP right card ── */}
-      <div className="hidden md:flex flex-1 pl-10">
+      <div className="hidden md:flex flex-1 justify-end pl-10">
         {!isLeft ? (
           <div
             className="light-card w-full max-w-xl p-5 rounded-2xl border"
@@ -370,14 +434,14 @@ const TimelineItem = ({ item, index }) => {
               borderColor: 'rgba(255,255,255,0.07)',
             }}
           >
-            <span className="text-blue-accent font-display font-bold text-right block text-sm">{item.year}</span>
-            <h3 className="font-display font-bold text-white text-lg mt-1 mb-2 text-right">{item.title}</h3>
-            <p className="text-muted font-body text-sm leading-relaxed text-right">{item.desc}</p>
+            <span className="text-blue-accent font-display font-bold text-left block text-sm">{item.year}</span>
+            <h3 className="font-display font-bold text-white text-lg mt-1 mb-2 text-left">{item.title}</h3>
+            <p className="text-muted font-body text-sm leading-relaxed text-left">{item.desc}</p>
           </div>
         ) : <div className="w-full max-w-xs" />}
       </div>
 
-      {/* ── MOBILE card — always right of dot ── */}
+      {/* ── MOBILE card - always right of dot ── */}
       <div
         className="md:hidden flex-1 pl-6"
         style={{
@@ -422,9 +486,9 @@ const TimelineSection = () => {
 
         {/* Timeline container */}
         <div className="relative">
-          {/* Desktop — vertical line in centre */}
+          {/* Desktop - vertical line in centre */}
           <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-accent/30 to-transparent" />
-          {/* Mobile — vertical line on far left */}
+          {/* Mobile - vertical line on far left */}
           <div className="md:hidden absolute left-[7px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-accent/30 to-transparent" />
 
           <div className="space-y-10 md:space-y-12">
@@ -439,7 +503,7 @@ const TimelineSection = () => {
 };
 
 // ─── 5. CULTURE CTA ──────────────────────────────────────────────────────────
-// Fix 1 — Glassdoor block: target icon → rating number → 5 stars → label
+// Fix 1 - Glassdoor block: target icon → rating number → 5 stars → label
 const GlassdoorCard = ({ inView }) => (
   <div
     className="flex justify-center sm:justify-end"
@@ -472,7 +536,7 @@ const GlassdoorCard = ({ inView }) => (
         </svg> */}
 
         {/* Rating number */}
-        <span className="font-display font-extrabold text-4xl text-blue-accent leading-none">4.9/5</span>
+        <span className="font-display font-extrabold text-4xl text-blue-accent leading-none">5/5</span>
 
         {/* 5 stars */}
         <div className="flex gap-1">
@@ -551,7 +615,7 @@ const CultureSection = () => {
               </div>
             </div>
 
-            {/* Right — Fix 1: Glassdoor card */}
+            {/* Right - Fix 1: Glassdoor card */}
             <GlassdoorCard inView={inView} />
           </div>
         </div>

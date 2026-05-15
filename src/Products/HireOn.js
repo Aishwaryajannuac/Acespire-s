@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
 import Footer from '../components/Footer';
 import Chatbot from '../Home/Chatbot';
+import { useContactModal } from '../context/ContactModalContext';
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 const HeroSection = () => {
   const [visible, setVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const sectionRef = useRef(null);
+    const { openModal } = useContactModal();
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 80);
@@ -73,29 +75,25 @@ const HeroSection = () => {
             </h1>
 
             <p style={fade(0.38)} className="text-muted font-body text-base sm:text-lg leading-relaxed max-w-md mb-10">
-              Recruitment teams often spend countless hours manually reviewing resumes and
-              shortlisting candidates. Our AI Hiring Agent eliminates the repetitive work
-              by automating resume screening, candidate evaluation, and interview scheduling,
-              allowing HR professionals to focus on strategic decision-making.
+              HireOn AI automates resume screening, candidate evaluation, and interview scheduling - eliminating manual inefficiencies that drain HR teams of valuable time.
             </p>
 
             <div style={fade(0.52)} className="flex flex-wrap items-center gap-4">
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-7 py-3.5 bg-blue-accent hover:bg-blue-dark text-white text-sm font-display font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(61,126,255,0.55)] hover:scale-105 active:scale-95"
+             <button onClick={() => openModal({ enquiryType: 'products', preSelectProduct: 'HireOn AI', sourcePage: 'HireOn AI Page' })}
+                className="inline-flex items-center px-7 py-3.5 bg-blue-accent hover:bg-blue-dark text-always-white text-sm font-display font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(61,126,255,0.55)] hover:scale-105 active:scale-95"
               >
                 Schedule Discovery Call
-              </Link>
+              </button>
               <Link
-                to="/case-studies"
+                to="https://hireon.acespireconsulting.com/"
                 className="inline-flex items-center px-6 py-3.5 border border-white/20 hover:border-blue-accent/50 text-white text-sm font-display font-semibold rounded-full transition-all duration-300 hover:bg-card-hover"
               >
-                View Case Studies
+                Login to HireOn 
               </Link>
             </div>
           </div>
 
-          {/* Right — hero image */}
+          {/* Right - hero image */}
           <div
             style={{
               opacity:   visible ? 1 : 0,
@@ -119,7 +117,7 @@ const HeroSection = () => {
   );
 };
 
-// ─── SECTION 2 — TRADITIONAL RECRUITMENT (image left, text slides from right) ──
+// ─── SECTION 2 - TRADITIONAL RECRUITMENT (image left, text slides from right) ──
 const TraditionalSection = () => {
   const [ref, inView] = useInView();
 
@@ -131,7 +129,7 @@ const TraditionalSection = () => {
       <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-          {/* Left — image slides from left */}
+          {/* Left - image slides from left */}
           <div
             style={{
               opacity:   inView ? 1 : 0,
@@ -148,7 +146,7 @@ const TraditionalSection = () => {
             />
           </div>
 
-          {/* Right — text slides from right */}
+          {/* Right - text slides from right */}
           <div
            className="order-2 lg:order-2"
             style={{
@@ -189,7 +187,7 @@ const TraditionalSection = () => {
   );
 };
 
-// ─── SECTION 3 — TECHNOLOGY STACK (text left, image slides from left) ──────────
+// ─── SECTION 3 - TECHNOLOGY STACK (text left, image slides from left) ──────────
 const TechStackSection = () => {
   const [ref, inView] = useInView();
 
@@ -206,7 +204,7 @@ const TechStackSection = () => {
       <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-          {/* Left — text slides from left */}
+          {/* Left - text slides from left */}
           <div
             className="order-2 lg:order-1"
             style={{
@@ -240,7 +238,7 @@ const TechStackSection = () => {
             </div>
           </div>
 
-          {/* Right — image slides from right */}
+          {/* Right - image slides from right */}
           <div
             style={{
               opacity:   inView ? 1 : 0,
@@ -262,9 +260,10 @@ const TechStackSection = () => {
   );
 };
 
-// ─── SECTION 4 — TRANSFORM RECRUITMENT (image left slides from right, text right) ─
+// ─── SECTION 4 - TRANSFORM RECRUITMENT (image left slides from right, text right) ─
 const TransformSection = () => {
   const [ref, inView] = useInView();
+  const { openModal } = useContactModal();
 
   return (
     <section className="relative py-20 lg:py-28 bg-primary overflow-hidden">
@@ -274,7 +273,7 @@ const TransformSection = () => {
       <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-          {/* Left — image slides from left (per instruction: 4th section comes from right = image animates from right direction) */}
+          {/* Left - image slides from left (per instruction: 4th section comes from right = image animates from right direction) */}
           <div
             style={{
               opacity:   inView ? 1 : 0,
@@ -291,7 +290,7 @@ const TransformSection = () => {
             />
           </div>
 
-          {/* Right — text slides from right */}
+          {/* Right - text slides from right */}
           <div
           className="order-2"
             style={{
@@ -310,16 +309,15 @@ const TransformSection = () => {
             <p className="text-muted font-body text-sm sm:text-base leading-relaxed mb-8">
               Experience the future of recruitment today.
             </p>
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-blue-accent hover:bg-blue-dark text-white text-sm font-display font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_28px_rgba(61,126,255,0.5)] hover:scale-105 active:scale-95 italic"
+        <button onClick={() => openModal({ enquiryType: 'products', preSelectProduct: 'HireOn AI', sourcePage: 'HireOn AI Page' })}
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-blue-accent hover:bg-blue-dark text-always-white text-sm font-display font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_28px_rgba(61,126,255,0.5)] hover:scale-105 active:scale-95 italic"
             >
               Request a Demo
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
                 className="transition-transform duration-200 group-hover:translate-x-1">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -327,7 +325,7 @@ const TransformSection = () => {
   );
 };
 
-// ─── SECTION 5 — MEASURABLE BUSINESS IMPACT ───────────────────────────────────
+// ─── SECTION 5 - MEASURABLE BUSINESS IMPACT ───────────────────────────────────
 const stats = [
   { value: '60%', dir: 'up',   color: '#3d7eff', title: 'Productivity Improvement',  desc: 'Automate repetitive tasks to free up time for high-value work.' },
   { value: '40%', dir: 'down', color: '#3d7eff', title: 'Operational Costs',          desc: 'Reduce dependency on manual processes and minimize inefficiencies.' },
@@ -424,7 +422,7 @@ const StatCard = ({ stat, index, inView }) => {
   );
 };
 
-// ─── SECTION 6 — WHY ACESPIRE FOR AUTOMATION ──────────────────────────────────
+// ─── SECTION 6 - WHY ACESPIRE FOR AUTOMATION ──────────────────────────────────
 const WhyAcespireSection = () => {
   const [ref, inView] = useInView();
 
@@ -456,7 +454,7 @@ const WhyAcespireSection = () => {
           <div className="absolute top-0 right-0 w-72 h-72 bg-blue-accent/6 rounded-full blur-[80px] pointer-events-none" />
 
           <div className="relative grid lg:grid-cols-2 gap-2 items-center">
-            {/* Left — checklist */}
+            {/* Left - checklist */}
             <div
               style={{
                 opacity:   inView ? 1 : 0,
@@ -498,7 +496,7 @@ const WhyAcespireSection = () => {
               </Link>
             </div>
 
-            {/* Right — dashboard image */}
+            {/* Right - dashboard image */}
             <div
               style={{
                 opacity:   inView ? 1 : 0,
@@ -535,9 +533,10 @@ const WhyAcespireSection = () => {
   );
 };
 
-// ─── SECTION 7 — CTA ──────────────────────────────────────────────────────────
+// ─── SECTION 7 - CTA ──────────────────────────────────────────────────────────
 const CTASection = () => {
   const [ref, inView] = useInView();
+    const { openModal } = useContactModal();
 
   return (
     <section className="relative py-16 lg:py-24 bg-primary overflow-hidden">
@@ -585,12 +584,11 @@ const CTASection = () => {
                 transition: 'all 0.75s cubic-bezier(.4,0,.2,1) 0.5s',
               }}
             >
-              <Link
-                to="/contact"
+              <button onClick={() => openModal({ enquiryType: 'products', preSelectProduct: 'HireOn AI', sourcePage: 'HireOn AI Page' })}
                 className="inline-flex items-center px-8 py-3.5 bg-white hover:bg-gray-50 text-[#1E3A8A] text-sm font-display font-bold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] active:scale-95"
               >
                 Book a Consultation
-              </Link>
+              </button>
               <Link
                 to="/services/automation"
                 className="inline-flex items-center px-8 py-3.5 bg-black/35 hover:bg-black/50 text-white text-sm font-display font-bold rounded-full border border-white/20 transition-all duration-300 hover:scale-105 active:scale-95"

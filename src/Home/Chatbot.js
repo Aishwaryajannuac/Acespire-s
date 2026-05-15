@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, X} from 'lucide-react';
 import DOMPurify from 'dompurify';
@@ -790,7 +793,7 @@ return (
                 >
                   <div className="w-8 h-8 flex items-center justify-center services-button">
                     <img 
-                      src="service-btn.svg" 
+                      src="/service-btn.svg" 
                       alt="service" 
                       className="w-[40px] h-[40px]"
                     />
@@ -809,7 +812,7 @@ return (
                 >
                   <div className="w-8 h-8 flex items-center justify-center faq-button">
                     <img 
-                      src="msg-btn.svg" 
+                      src="/msg-btn.svg" 
                       alt="faq" 
                       className="w-[40px] h-[40px]"
                     />
@@ -824,7 +827,7 @@ return (
                 >
                   <div className="w-8 h-8 flex items-center justify-center close-button">
                     <img 
-                      src="close-btn.svg" 
+                      src="/close-btn.svg" 
                       alt="close" 
                       className="w-[23px] h-[23px]"
                     />
@@ -844,7 +847,7 @@ return (
                 >
                   <div className="w-8 h-8 flex items-center justify-center contact-button">
                     <img 
-                      src="contact-btn.svg" 
+                      src="/contact-btn.svg" 
                       alt="contactbutton" 
                       className="w-[39px] h-[39px]"
                     />
@@ -863,7 +866,7 @@ return (
                 >
                   <div className="w-8 h-8 flex items-center justify-center about-us">
                     <img 
-                      src="aboutus-btn.svg" 
+                      src="/aboutus-btn.svg" 
                       alt="About Us" 
                       className="w-[40px] h-[40px]"
                     />
@@ -1335,7 +1338,7 @@ style={{ color: isDark ? '#e2e8f0' : '#111827' }}
         } 
 
          /* =============================================
-   DARK MODE ONLY — background-size corrections
+   DARK MODE ONLY - background-size corrections
    per breakpoint (light mode untouched)
    ============================================= */
 

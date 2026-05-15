@@ -6,7 +6,7 @@ import blogPosts, { blogCategories } from './Blogdata';
 import { useTheme } from '../hooks/useTheme';
 import Chatbot from '../Home/Chatbot';
 
-// ─── Content formatter — same spacious style as CaseStudyDetail ───────────────
+// ─── Content formatter - same spacious style as CaseStudyDetail ───────────────
 const formatContent = (content) => {
   if (!content) return [];
 
@@ -28,7 +28,7 @@ const formatContent = (content) => {
         );
       }
 
-      // Section headers — ALL CAPS words or title-case standalone lines
+      // Section headers - ALL CAPS words or title-case standalone lines
       if (
         clean.match(/^[A-Z][a-zA-Z\s&,:/-]{4,}$/) &&
         !clean.endsWith('.') &&
@@ -79,7 +79,7 @@ const formatContent = (content) => {
         );
       }
 
-      // What this means — highlight line
+      // What this means - highlight line
       if (clean.startsWith('What this means for businesses:')) {
         const parts = clean.split('What this means for businesses:');
         return (
@@ -298,7 +298,7 @@ const HeroBlock = ({ post }) => {
         </div>
       </section>
 
-      {/* ── Section 2: Title block — separate section, explicit bg ── */}
+      {/* ── Section 2: Title block - separate section, explicit bg ── */}
       <section
         style={{
           background:   isDark ? '#13161f' : '#ffffff',
@@ -396,6 +396,15 @@ const MainContent = ({ post }) => {
             opacity:   inView ? 1 : 0,
             transform: inView ? 'translateY(0)' : 'translateY(30px)',
             transition: 'all 0.8s cubic-bezier(.4,0,.2,1)',
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+borderRight: '1px solid rgba(255,255,255,0.08)',
+borderBottom: '1px solid rgba(255,255,255,0.08)',
+borderLeft: '1px solid rgba(255,255,255,0.08)',
+padding: '24px',
+borderTopRightRadius: '16px',
+borderBottomRightRadius: '16px',
+borderBottomLeftRadius: '16px',
+borderTopLeftRadius: '16px',
           }}>
             {/* Author */}
             <div className="flex items-center gap-3 mb-8 pb-5"

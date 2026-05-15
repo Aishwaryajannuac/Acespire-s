@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import blogPosts, { blogCategories } from './Blogdata';
 import Chatbot from '../Home/Chatbot';
 
-// ─── HERO — Featured blog ──────────────────────────────────────────────────────
+// ─── HERO - Featured blog ──────────────────────────────────────────────────────
 const HeroSection = () => {
   const [visible, setVisible] = useState(false);
   const featured = blogPosts.find((b) => b.featured) || blogPosts[0];
@@ -57,7 +57,7 @@ const HeroSection = () => {
           }}
         >
           <div className="light-card grid sm:grid-cols-2 gap-0">
-            {/* Left — text */}
+            {/* Left - text */}
             <div className="p-8 sm:p-10 flex flex-col justify-center order-2 sm:order-1">
               <div className="flex items-center gap-3 mb-5">
                 <span className="px-3 py-1 rounded-full text-xs font-body font-semibold tracking-wide"
@@ -111,7 +111,7 @@ const HeroSection = () => {
               </Link>
             </div>
 
-            {/* Right — image */}
+            {/* Right - image */}
             <div className="order-1 sm:order-2 h-56 sm:h-auto overflow-hidden">
               <img
                 src={featured.image}
@@ -241,14 +241,14 @@ const AllBlogsSection = () => {
   const [titleRef, titleInView] = useInView();
   const [gridRef,  gridInView]  = useInView();
 
-  const nonFeatured = blogPosts.filter((b) => !b.featured);
+const sorted = [...blogPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const filtered = nonFeatured.filter((b) => {
-    const matchCat    = activeFilter === 'All' || b.category === activeFilter;
-    const matchSearch = b.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        b.subtitle.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchCat && matchSearch;
-  });
+const filtered = sorted.filter((b) => {
+  const matchCat    = activeFilter === 'All' || b.category === activeFilter;
+  const matchSearch = b.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                      b.subtitle.toLowerCase().includes(searchQuery.toLowerCase());
+  return matchCat && matchSearch;
+});
 
   const shown = filtered.slice(0, visibleCount);
 
@@ -258,7 +258,7 @@ const AllBlogsSection = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Filter bar + search — matching screenshot layout */}
+        {/* Filter bar + search - matching screenshot layout */}
         <div
           ref={titleRef}
           className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10"
@@ -344,7 +344,7 @@ const AllBlogsSection = () => {
           </div>
         )}
 
-        {/* ── Stay Informed — at bottom ── */}
+        {/* ── Stay Informed - at bottom ── */}
         <StayInformed />
       </div>
     </section>

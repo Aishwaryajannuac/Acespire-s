@@ -4,39 +4,39 @@ import useInView from '../hooks/useInView';
 
 /*
   Place these images in your /public folder:
-    /Nextlead.png    — used for all 3 carousel cards (swap per product if you have them)
-    /HireOn.png      — optional per-product image
-    /DigiMark.png    — optional per-product image
+    /Nextlead.png    - used for all 3 carousel cards (swap per product if you have them)
+    /HireOn.png      - optional per-product image
+    /DigiMark.png    - optional per-product image
 */
 const agents = [
    {
-    id: 'hireon', tag: 'Agentic AI', name: 'HireOn AI', subtitle: 'Intelligent Recruitment Hub',
+    id: 'hireon', tag: 'Agentic AI', name: 'HireOn AI', subtitle: 'Hiring agent',
     href: '/products/hireon', color: '#a78bfa',
-    image: '/Nextlead.png',          // swap to /HireOn.png when available
-    features: ['AI-powered candidate screening', 'Automated interview scheduling', 'Skills gap analysis', 'Onboarding workflow automation'],
+    image: '/Hireon-mockup.png',          // swap to /HireOn.png when available
+    features: ['Automated Resume Screening', 'Precision Candidate Matching', ' Seamless Interview Scheduling', 'Smarter, Faster Hiring'],
   },
   {
-    id: 'nexlead', tag: 'Agentic AI', name: 'NexLead AI', subtitle: 'Automated Lead Interaction',
+    id: 'nexlead', tag: 'Agentic AI', name: 'NexLead AI', subtitle: 'Lead generation',
     href: '/products/nextlead', color: '#3d7eff',
     image: '/Nextlead.png',
-    features: ['High-intent lead identification', 'Conversational sales intelligence', 'Revenue leakage detection', 'Autonomous CRM management'],
+    features: ['Find the Right Leads. Instantly.', 'Score. Prioritize. Convert', 'One Unified Lead Generation System', 'Sales Performance, Supercharged'],
   },
  
   {
-    id: 'digimark', tag: 'Product Intelligence', name: 'DigiMark', subtitle: 'Digital Product Authentication',
+    id: 'digimark', tag: 'Agentic AI', name: 'DigiMark', subtitle: 'Content generation',
     href: '/products/digimark', color: '#34d399',
-    image: '/Nextlead.png',          // swap to /DigiMark.png when available
-    features: ['Blockchain-based product IDs', 'QR code instant verification', 'Supply chain transparency', 'Anti-counterfeiting protection'],
+    image: '/Digimark.png',          // swap to /DigiMark.png when available
+    features: ['AI Content. Created in Seconds', 'Schedule Smarter. Post Faster', ' Insights That Drive Decisions', ' One Dashboard. Every Platform'],
   },
    {
-    id: 'meeting-manager', tag: 'Agentic AI', name: 'Meeting Manager', subtitle: 'Intelligent Meeting Automation',
-    href: '/products/meeting-manager', color: '#fb923c', image: '/Nextlead.png',
-    features: ['Automated meeting summaries', 'Action item extraction', 'Decision tracking', 'Follow-up workflow automation'],
+    id: 'meeting-manager', tag: 'Agentic AI', name: 'Meeting Manager', subtitle: 'Automated meetings',
+    href: '/products/meeting-manager', color: '#fb923c', image: '/Meetingmanager.png',
+    features: ['AI-Generated Meeting Summaries', 'Key Decisions. Tracked Automatically', 'Centralized, Searchable Meeting Records', 'Turn Conversations into Action'],
   },
   {
     id: 'invoice-agent', tag: 'Agentic AI', name: 'Invoice Agent', subtitle: 'Intelligent Invoice Processing',
-    href: '/products/invoice-processing-agent', color: '#60b4ff', image: '/Nextlead.png',
-    features: ['Intelligent data extraction', 'Automated invoice validation', 'ERP system integration', 'Exception handling & alerts'],
+    href: '/products/invoice-processing-agent', color: '#60b4ff', image: '/Invoiceagent.png',
+    features: ['Zero Manual Data Entry', 'Real-Time Validation. Every Invoice', 'Seamless ERP Reconciliation', 'Invoice Processing, Reimagined'],
   },
 ];
 
@@ -73,13 +73,13 @@ const AgenticSection = () => {
           style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.7s ease' }}
         >
           <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-muted font-body mb-5">
-            Our AI Suite
+            Our Agentic AI 
           </div>
           <h2 className="font-display font-extrabold text-4xl sm:text-5xl text-white mb-4">
             The Era of Agentic Intelligence
           </h2>
           <p className="text-muted font-body text-base max-w-xl mx-auto leading-relaxed">
-           Introducing your new digital workforce. Our purpose-built AI agents handle lead generation, hiring workflows, and content creation - autonomously and at scale - delivering measurable results without adding to your team's workload.
+           Meet your new digital workforce - AI agents that autonomously drive lead generation, hiring, and content creation at scale, with measurable impact and zero added overhead.
           </p>
         </div>
 
@@ -98,87 +98,93 @@ const AgenticSection = () => {
             </svg>
           </button>
 
-          {/* Card */}
-          <div
-            className="light-card flex-1 rounded-2xl border overflow-hidden"
-            style={{
-              background: 'rgba(18,22,36,0.8)',
-              borderColor: `${agent.color}25`,
-              opacity:   animating ? 0 : 1,
-              transform: animating ? 'scale(0.97)' : 'scale(1)',
-              transition: 'opacity 0.3s ease, transform 0.3s ease, border-color 0.4s ease',
-            }}
-          >
-           <div className="grid sm:grid-cols-2 gap-0 items-stretch">
-
-              {/* Image panel — Nextlead.png (or per-agent image) */}
-              {/* Image panel — full height, no crop, no blank space */}
+         {/* Card */}
 <div
-  className="relative overflow-hidden border-b sm:border-b-0 sm:border-r border-white/5"
-  style={{ background: 'rgba(10,14,26,0.95)' }}
+  className="light-card flex-1 rounded-2xl border overflow-hidden"
+  style={{
+    background:  'rgba(18,22,36,0.8)',
+    borderColor: `${agent.color}25`,
+    opacity:     animating ? 0 : 1,
+    transform:   animating ? 'scale(0.97)' : 'scale(1)',
+    transition:  'opacity 0.3s ease, transform 0.3s ease, border-color 0.4s ease',
+  }}
 >
-  {/* Coloured tint glow */}
   <div
-    className="absolute inset-0 pointer-events-none z-10"
-    style={{
-      background: `radial-gradient(ellipse at 30% 50%, ${agent.color}12 0%, transparent 60%)`,
-    }}
-  />
-  <img
-    src={agent.image}
-    alt={agent.name}
-    className="w-full h-full object-contain object-center transition-transform duration-700 hover:scale-[1.03]"
-    draggable={false}
-    style={{ display: 'block' }}
-  />
+    className="grid sm:grid-cols-2 gap-0"
+    style={{ minHeight: '380px' }}
+  >
+    <div
+      className="relative overflow-hidden border-b sm:border-b-0 sm:border-r border-white/5"
+      style={{ background: 'rgba(10,14,26,0.95)', height: '380px' }}
+    >
+      <div
+        className="absolute inset-0 pointer-events-none z-10"
+        style={{
+          background: `radial-gradient(ellipse at 30% 50%, ${agent.color}12 0%, transparent 60%)`,
+        }}
+      />
+      <img
+        src={agent.image}
+        alt={agent.name}
+        className="w-full h-full transition-transform duration-700 hover:scale-[1.03]"
+        draggable={false}
+        style={{
+          display:         'block',
+          objectFit:       'cover',
+          objectPosition:  'center',
+        }}
+      />
+    </div>
+
+    <div
+      className="p-7 sm:p-9 flex flex-col justify-center"
+      style={{ height: '380px', overflowY: 'auto' }}
+    >
+      <div className="flex items-center gap-3 mb-4">
+        <div
+          className="w-8 h-8 rounded-lg flex items-center justify-center"
+          style={{ background: `${agent.color}20`, color: agent.color }}
+        >
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <circle cx="8" cy="8" r="3" />
+            <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4" />
+          </svg>
+        </div>
+        <span
+          className="px-3 py-1 rounded-full text-xs font-body border"
+          style={{ borderColor: `${agent.color}30`, color: agent.color, background: `${agent.color}10` }}
+        >
+          {agent.tag}
+        </span>
+      </div>
+
+      <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-1">{agent.name}</h3>
+      <p className="text-muted font-body text-sm mb-6">{agent.subtitle}</p>
+
+      <ul className="space-y-2.5 mb-8">
+        {agent.features.map((f) => (
+          <li key={f} className="flex items-center gap-2.5 text-sm font-body text-white/80">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" strokeWidth="2"
+              strokeLinecap="round" stroke={agent.color} className="shrink-0">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            {f}
+          </li>
+        ))}
+      </ul>
+
+      <Link
+        to={agent.href}
+        className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-display font-semibold text-always-white transition-all duration-300 hover:scale-105 active:scale-95"
+        style={{ background: `linear-gradient(135deg, ${agent.color}, ${agent.color}bb)`, boxShadow: `0 4px 20px ${agent.color}30` }}
+      >
+        Learn More
+      </Link>
+    </div>
+
+  </div>
 </div>
-
-              {/* Content panel */}
-              <div className="p-7 sm:p-9 flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center"
-                    style={{ background: `${agent.color}20`, color: agent.color }}
-                  >
-                    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <circle cx="8" cy="8" r="3" />
-                      <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4" />
-                    </svg>
-                  </div>
-                  <span
-                    className="px-3 py-1 rounded-full text-xs font-body border"
-                    style={{ borderColor: `${agent.color}30`, color: agent.color, background: `${agent.color}10` }}
-                  >
-                    {agent.tag}
-                  </span>
-                </div>
-
-                <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-1">{agent.name}</h3>
-                <p className="text-muted font-body text-sm mb-6">{agent.subtitle}</p>
-
-                <ul className="space-y-2.5 mb-8">
-                  {agent.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2.5 text-sm font-body text-white/80">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" strokeWidth="2"
-                        strokeLinecap="round" stroke={agent.color} className="shrink-0">
-                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-                        <polyline points="22 4 12 14.01 9 11.01" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to={agent.href}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-display font-semibold text-always-white transition-all duration-300 hover:scale-105 active:scale-95"
-                  style={{ background: `linear-gradient(135deg, ${agent.color}, ${agent.color}bb)`, boxShadow: `0 4px 20px ${agent.color}30` }}
-                >
-                  Learn More
-                </Link>
-              </div>
-            </div>
-          </div>
 
           {/* Next */}
           <button

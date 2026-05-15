@@ -14,8 +14,10 @@ const CaseStudiesSection = () => {
   const isDark = theme === 'dark';
 
   const perPage    = 3;
-  const totalPages = Math.ceil(caseStudies.length / perPage);
-  const visible    = caseStudies.slice(page * perPage, page * perPage + perPage);
+ 
+  const sorted  = [...caseStudies].sort((a, b) => new Date(b.date) - new Date(a.date));
+const visible = sorted.slice(page * perPage, page * perPage + perPage);
+ const totalPages = Math.ceil(sorted.length / perPage);
 
   return (
     <section

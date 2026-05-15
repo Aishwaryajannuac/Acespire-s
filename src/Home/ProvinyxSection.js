@@ -24,7 +24,7 @@ const ProvinyxSection = () => {
 
           <div className="relative grid lg:grid-cols-2 gap-12 items-center">
 
-            {/* Left — text */}
+            {/* Left - text */}
             <div>
               {/* Provinyx brand badge */}
               <div
@@ -43,14 +43,14 @@ const ProvinyxSection = () => {
                 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-5"
                 style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateX(0)' : 'translateX(-30px)', transition: 'all 0.7s ease 0.3s' }}
               >
-                Next-Gen Digital<br />Product Passport
+                Acespire's Digital<br />Product Passport
               </h2>
 
               <p
                 className="text-muted font-body text-sm sm:text-base leading-relaxed mb-8 max-w-md"
                 style={{ opacity: inView ? 1 : 0, transition: 'all 0.6s ease 0.45s' }}
               >
-                Our Digital Product Passport solution transforms the way businesses manage product information across the supply chain. By assigning every product a unique, tamper-proof digital identity, we ensure full visibility, regulatory compliance, and authenticated traceability at every stage of the product lifecycle.
+                Our DPP solution gives every product a verifiable digital identity - enabling end-to-end traceability and compliance.Bringing transparency, authenticity, and trust to every stage of your supply chain.
               </p>
 
               <div
@@ -79,7 +79,7 @@ const ProvinyxSection = () => {
               </div>
             </div>
 
-            {/* Right — Provinyx-dashboard.png */}
+            {/* Right - Provinyx-dashboard.png */}
             <div
               className="relative h-64 sm:h-72 lg:h-80"
               style={{ opacity: inView ? 1 : 0, transform: inView ? 'scale(1)' : 'scale(0.9)', transition: 'all 0.8s ease 0.4s' }}

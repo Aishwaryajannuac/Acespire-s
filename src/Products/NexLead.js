@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
 import Footer from '../components/Footer';
 import Chatbot from '../Home/Chatbot';
+import { useContactModal } from '../context/ContactModalContext';
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 const HeroSection = () => {
   const [visible, setVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const sectionRef = useRef(null);
+    const { openModal } = useContactModal();
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 80);
@@ -60,42 +62,38 @@ const HeroSection = () => {
           {/* Left */}
           <div>
             <div style={fade(0.08)} className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-xs text-muted font-body mb-7">
-              Agentic AI: Hireon
+              Agentic AI: Nextlead
             </div>
 
             <h1
               style={fade(0.22)}
               className="font-display font-extrabold text-5xl sm:text-6xl lg:text-5xl leading-[1.05] tracking-wide mb-6"
             >
-              <span className="text-blue-gradient block">Smarter, Faster, and</span>
-              <span className="text-blue-gradient block">More Efficient</span>
-              <span className="text-blue-gradient block">Recruitment</span>
+              <span className="text-blue-gradient block">Lead Generation,</span>
+              <span className="text-blue-gradient block">Reimagined.</span>
+             
             </h1>
 
             <p style={fade(0.38)} className="text-muted font-body text-base sm:text-lg leading-relaxed max-w-md mb-10">
-              Recruitment teams often spend countless hours manually reviewing resumes and
-              shortlisting candidates. Our AI Hiring Agent eliminates the repetitive work
-              by automating resume screening, candidate evaluation, and interview scheduling,
-              allowing HR professionals to focus on strategic decision-making.
+              Traditional lead generation is slowed by manual effort, scattered data, and inconsistent outreach.NexLead AI automates end-to-end prospecting, intelligent engagement scoring, and workflow automation - accelerating conversions and maximizing sales performance.
             </p>
 
             <div style={fade(0.52)} className="flex flex-wrap items-center gap-4">
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-7 py-3.5 bg-blue-accent hover:bg-blue-dark text-white text-sm font-display font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(61,126,255,0.55)] hover:scale-105 active:scale-95"
+                       <button onClick={() => openModal({ enquiryType: 'products', preSelectProduct: 'NexLead', sourcePage: 'NextLead Page' })}
+                className="inline-flex items-center px-7 py-3.5 bg-blue-accent hover:bg-blue-dark text-always-white text-sm font-display font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(61,126,255,0.55)] hover:scale-105 active:scale-95"
               >
                 Schedule Discovery Call
-              </Link>
+              </button>
               <Link
-                to="/case-studies"
+                to="https://nextlead.acespireconsulting.com/"
                 className="inline-flex items-center px-6 py-3.5 border border-white/20 hover:border-blue-accent/50 text-white text-sm font-display font-semibold rounded-full transition-all duration-300 hover:bg-card-hover"
               >
-                View Case Studies
+                Login to Nextlead
               </Link>
             </div>
           </div>
 
-          {/* Right — hero image */}
+          {/* Right - hero image */}
           <div
             style={{
               opacity:   visible ? 1 : 0,
@@ -105,7 +103,7 @@ const HeroSection = () => {
             className="flex items-center justify-center lg:justify-end"
           >
             <img
-              src="/Hireon1.png"
+              src="/n1.png"
               alt="HireOn AI Recruitment"
               className="w-full max-w-[520px] h-auto object-contain"
               draggable={false}
@@ -119,7 +117,7 @@ const HeroSection = () => {
   );
 };
 
-// ─── SECTION 2 — TRADITIONAL RECRUITMENT (image left, text slides from right) ──
+// ─── SECTION 2 - TRADITIONAL RECRUITMENT (image left, text slides from right) ──
 const TraditionalSection = () => {
   const [ref, inView] = useInView();
 
@@ -131,7 +129,7 @@ const TraditionalSection = () => {
       <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-          {/* Left — image slides from left */}
+          {/* Left - image slides from left */}
           <div
             style={{
               opacity:   inView ? 1 : 0,
@@ -141,14 +139,14 @@ const TraditionalSection = () => {
             className="order-1 lg:order-1 flex items-center justify-center"
           >
             <img
-              src="/Hireon2.png"
+              src="/n2.png"
               alt="Traditional Recruitment"
               className="w-full max-w-[480px] h-auto object-contain"
               draggable={false}
             />
           </div>
 
-          {/* Right — text slides from right */}
+          {/* Right - text slides from right */}
           <div
            className="order-2 lg:order-2"
             style={{
@@ -158,15 +156,13 @@ const TraditionalSection = () => {
             }}
           >
             <p className="text-white/80 font-body text-base sm:text-lg leading-relaxed mb-6">
-              Traditional recruitment involves manual screening, data extraction, and matching —
-              a time-consuming and error-prone process.<br />
-              Our solution helps you:
+              Key Challenges Solved:
             </p>
             <ul className="space-y-5">
               {[
-                'Automatically analyze and score resumes in seconds.',
-                'Match candidates to job descriptions using AI intelligence.',
-                'Streamline initial screening and interview scheduling through automation.',
+                'Manual prospecting and outreach consume valuable sales time.',
+                'Tracking engagement signals across multiple channels is complex.',
+                'Difficulty identifying high-intent leads for targeted follow-ups.',
               ].map((item, i) => (
                 <li
                   key={i}
@@ -180,8 +176,12 @@ const TraditionalSection = () => {
                   <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-accent shrink-0" />
                   {item}
                 </li>
+                
               ))}
             </ul>
+            <p className="text-gray-700 text-lg leading-relaxed mb-6 lg:mb-[20px] px-2 sm:px-0 md:px-0 lg:px-0">
+                   Our AI-powered solution eliminates these challenges by streamlining data collection, outreach, and lead scoring within a single intelligent system.
+                  </p>
           </div>
         </div>
       </div>
@@ -189,14 +189,16 @@ const TraditionalSection = () => {
   );
 };
 
-// ─── SECTION 3 — TECHNOLOGY STACK (text left, image slides from left) ──────────
+// ─── SECTION 3 - TECHNOLOGY STACK (text left, image slides from left) ──────────
 const TechStackSection = () => {
   const [ref, inView] = useInView();
 
   const stack = [
-    { label: 'LLM', desc: 'Groq Chat Model for intelligent resume analysis and matching' },
-    { label: 'Workflow Automation', desc: 'n8n for orchestrating pipelines and REST APIs' },
-    { label: 'Frontend', desc: 'React + Tailwind CSS for a clean, responsive user experience' },
+    { label: 'AI Model', desc: 'Custom LLM for intent analysis, lead scoring, and personalized message generation.' },
+    { label: 'Automation Tool', desc: 'n8n for orchestrating workflows, data pipelines, and scoring updates.' },
+    { label: 'Frontend', desc: 'React + Tailwind CSS dashboard for monitoring campaigns and performance metrics.' },
+    { label: 'Data Layer', desc: 'API-based connectors for seamless data synchronization across platforms' },
+  
   ];
 
   return (
@@ -206,7 +208,7 @@ const TechStackSection = () => {
       <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-          {/* Left — text slides from left */}
+          {/* Left - text slides from left */}
           <div
             className="order-2 lg:order-1"
             style={{
@@ -240,7 +242,7 @@ const TechStackSection = () => {
             </div>
           </div>
 
-          {/* Right — image slides from right */}
+          {/* Right - image slides from right */}
           <div
             style={{
               opacity:   inView ? 1 : 0,
@@ -250,7 +252,7 @@ const TechStackSection = () => {
             className="order-1 lg:order-2 flex items-center justify-center lg:justify-end"
           >
             <img
-              src="/Hireon3.png"
+              src="/n3.png"
               alt="Technology Stack"
               className="w-full max-w-[500px] h-auto object-contain"
               draggable={false}
@@ -262,9 +264,11 @@ const TechStackSection = () => {
   );
 };
 
-// ─── SECTION 4 — TRANSFORM RECRUITMENT (image left slides from right, text right) ─
+// ─── SECTION 4 - TRANSFORM RECRUITMENT (image left slides from right, text right) ─
 const TransformSection = () => {
   const [ref, inView] = useInView();
+  const { openModal } = useContactModal();
+
 
   return (
     <section className="relative py-20 lg:py-28 bg-primary overflow-hidden">
@@ -274,7 +278,7 @@ const TransformSection = () => {
       <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-          {/* Left — image slides from left (per instruction: 4th section comes from right = image animates from right direction) */}
+          {/* Left - image slides from left (per instruction: 4th section comes from right = image animates from right direction) */}
           <div
             style={{
               opacity:   inView ? 1 : 0,
@@ -284,14 +288,14 @@ const TransformSection = () => {
             className="order-1 flex items-center justify-center"
           >
             <img
-              src="/Hireon4.png"
+              src="/n4.png"
               alt="Transform Recruitment"
               className="w-full max-w-[480px] h-auto object-contain"
               draggable={false}
             />
           </div>
 
-          {/* Right — text slides from right */}
+          {/* Right - text slides from right */}
           <div
           className="order-2"
             style={{
@@ -301,25 +305,23 @@ const TransformSection = () => {
             }}
           >
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white mb-4">
-              Transform Your Recruitment Process
+              Transform Your Lead Generation Process
             </h2>
             <p className="text-muted font-body text-sm sm:text-base leading-relaxed mb-4">
-              Empower your HR team with intelligent automation that enhances speed,
-              accuracy, and efficiency.
+              Accelerate your sales pipeline with AI-powered automation that delivers smarter insights, higher engagement, and faster conversions.
             </p>
-            <p className="text-muted font-body text-sm sm:text-base leading-relaxed mb-8">
+            {/* <p className="text-muted font-body text-sm sm:text-base leading-relaxed mb-8">
               Experience the future of recruitment today.
-            </p>
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-blue-accent hover:bg-blue-dark text-white text-sm font-display font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_28px_rgba(61,126,255,0.5)] hover:scale-105 active:scale-95 italic"
+            </p> */}
+          <button onClick={() => openModal({ enquiryType: 'products', preSelectProduct: 'NexLead', sourcePage: 'NextLead Page' })}
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-blue-accent hover:bg-blue-dark text-always-white text-sm font-display font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_28px_rgba(61,126,255,0.5)] hover:scale-105 active:scale-95 italic"
             >
               Request a Demo
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
                 className="transition-transform duration-200 group-hover:translate-x-1">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -327,7 +329,7 @@ const TransformSection = () => {
   );
 };
 
-// ─── SECTION 5 — MEASURABLE BUSINESS IMPACT ───────────────────────────────────
+// ─── SECTION 5 - MEASURABLE BUSINESS IMPACT ───────────────────────────────────
 const stats = [
   { value: '60%', dir: 'up',   color: '#3d7eff', title: 'Productivity Improvement',  desc: 'Automate repetitive tasks to free up time for high-value work.' },
   { value: '40%', dir: 'down', color: '#3d7eff', title: 'Operational Costs',          desc: 'Reduce dependency on manual processes and minimize inefficiencies.' },
@@ -424,7 +426,7 @@ const StatCard = ({ stat, index, inView }) => {
   );
 };
 
-// ─── SECTION 6 — WHY ACESPIRE FOR AUTOMATION ──────────────────────────────────
+// ─── SECTION 6 - WHY ACESPIRE FOR AUTOMATION ──────────────────────────────────
 const WhyAcespireSection = () => {
   const [ref, inView] = useInView();
 
@@ -456,7 +458,7 @@ const WhyAcespireSection = () => {
           <div className="absolute top-0 right-0 w-72 h-72 bg-blue-accent/6 rounded-full blur-[80px] pointer-events-none" />
 
           <div className="relative grid lg:grid-cols-2 gap-2 items-center">
-            {/* Left — checklist */}
+            {/* Left - checklist */}
             <div
               style={{
                 opacity:   inView ? 1 : 0,
@@ -498,7 +500,7 @@ const WhyAcespireSection = () => {
               </Link>
             </div>
 
-            {/* Right — dashboard image */}
+            {/* Right - dashboard image */}
             <div
               style={{
                 opacity:   inView ? 1 : 0,
@@ -535,9 +537,10 @@ const WhyAcespireSection = () => {
   );
 };
 
-// ─── SECTION 7 — CTA ──────────────────────────────────────────────────────────
+// ─── SECTION 7 - CTA ──────────────────────────────────────────────────────────
 const CTASection = () => {
   const [ref, inView] = useInView();
+    const { openModal } = useContactModal();
 
   return (
     <section className="relative py-16 lg:py-24 bg-primary overflow-hidden">
@@ -585,12 +588,11 @@ const CTASection = () => {
                 transition: 'all 0.75s cubic-bezier(.4,0,.2,1) 0.5s',
               }}
             >
-              <Link
-                to="/contact"
+               <button onClick={() => openModal({ enquiryType: 'products', preSelectProduct: 'NexLead', sourcePage: 'Nextlead Page' })}
                 className="inline-flex items-center px-8 py-3.5 bg-white hover:bg-gray-50 text-[#1E3A8A] text-sm font-display font-bold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] active:scale-95"
               >
                 Book a Consultation
-              </Link>
+              </button>
               <Link
                 to="/services/automation"
                 className="inline-flex items-center px-8 py-3.5 bg-black/35 hover:bg-black/50 text-white text-sm font-display font-bold rounded-full border border-white/20 transition-all duration-300 hover:scale-105 active:scale-95"

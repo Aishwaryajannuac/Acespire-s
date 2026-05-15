@@ -9,6 +9,7 @@ import CaseStudiesSection      from './CaseStudiesSection';
 import CTASection              from './CTASection';
 import Footer                  from '../components/Footer';
 import Chatbot                 from './Chatbot';
+import WhyWorkWithUsSection from './WhyWorkWithUsSection';
 
 /* Subtle cursor glow that follows the mouse */
 const CursorGlow = () => {
@@ -47,6 +48,7 @@ const HomePage = () => {
       <ProvinyxSection />
       <AgenticSection />
       <CaseStudiesSection />
+      <WhyWorkWithUsSection />
       <CTASection />
       <Chatbot />
       <Footer />

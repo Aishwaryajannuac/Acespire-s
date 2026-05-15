@@ -51,33 +51,23 @@ const culture = [
 const perks = [
   {
     icon: <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>,
-    title: 'Global Remote-First',
-    desc: 'Work from anywhere in the world with our borderless office policy and home-office stipends.',
+    title: 'Hybrid workplace',
+    desc: 'Work from anywhere in the world with our fully borderless office policy, home-office stipends, and async-friendly workflows built for distributed teams.',
   },
   {
     icon: <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>,
-    title: 'Growth Stipend',
-    desc: '$2,500 annual budget for conferences, certifications, and continuous learning.',
+    title: 'Growth depends on the performance',
+    desc: 'A annual learning budget to spend on conferences, certifications, or courses - because your development is our investment. Exposure in core tech projects',
   },
   {
     icon: <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>,
     title: 'Holistic Wellness',
-    desc: 'Comprehensive medical, dental, and vision coverage, plus monthly wellness allowances.',
-  },
-  {
-    icon: <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>,
-    title: 'Top-Tier Tech',
-    desc: 'The latest hardware of your choice plus a $1,000 setup bonus for your workspace.',
-  },
-  {
-    icon: <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>,
-    title: 'Equity & Ownership',
-    desc: "Generous stock options plan for every employee, because we're building this together.",
+    desc: 'Comprehensive medical, dental, and vision coverage, plus monthly wellness allowances to support your physical and mental wellbeing.',
   },
   {
     icon: <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
     title: 'Flexible Time Off',
-    desc: 'Unlimited PTO policy with a mandatory minimum of 15 days taken per year.',
+    desc: 'Unlimited PTO with a guaranteed minimum of 12 days - rest, recharge, and come back at your best.',
   },
 ];
 
@@ -104,7 +94,7 @@ const HeroSection = () => {
     canvas.width  = W;
     canvas.height = H;
 
-    // Floating orbs — represent people/talent joining a network
+    // Floating orbs - represent people/talent joining a network
     const orbs = Array.from({ length: 18 }, (_, i) => ({
       x:    Math.random() * W,
       y:    Math.random() * H,
@@ -242,13 +232,12 @@ const HeroSection = () => {
 
             <h1
               style={{ ...fade(0.2), color: 'var(--color-text-heading)' }}
-              className="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[1.06] tracking-tight mb-6"
+              className="font-display font-extrabold text-5xl sm:text-6xl lg:text-5xl leading-[1.06] tracking-tight mb-6"
             >
-              Build the{' '}
+             Shape the{' '}
               <span className="text-blue-gradient">Future</span>
               {' '}of<br />
-              Enterprise<br />
-              Operations
+              How Businesses Operate
             </h1>
 
             <p
@@ -279,7 +268,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* FIX 2 — Right: Career-hero.png image */}
+          {/* FIX 2 - Right: Career-hero.png image */}
           <div
             className="order-1 lg:order-2 flex justify-center lg:justify-end"
             style={{
@@ -424,8 +413,7 @@ const PerksSection = () => {
               <span className="text-blue-gradient">Excellence</span>
             </h2>
             <p className="font-body text-sm sm:text-base leading-relaxed" style={{ color: 'var(--color-muted)' }}>
-              We provide the resources and environment you need to perform at your peak and maintain a
-              sustainable work-life integration.
+              We invest in our people the same way we invest in our products - wholeheartedly. From day one, you get the tools, support, and freedom to thrive.
             </p>
           </div>
 
@@ -526,7 +514,7 @@ const RoleRow = ({ role, index, isDark }) => {
   const [hovered, setHovered] = useState(false);
   const [ref, rowInView] = useInView();
 
-  // FIX 4 — alternate: even index slides from left, odd from right
+  // FIX 4 - alternate: even index slides from left, odd from right
   const fromLeft  = index % 2 === 0;
   const slideFrom = fromLeft ? 'translateX(-50px)' : 'translateX(50px)';
 
@@ -621,7 +609,7 @@ const NoFitCard = () => {
         minHeight: 420,
       }}
     >
-      {/* Background image — Career-cta.png */}
+      {/* Background image - Career-cta.png */}
       <img
         src="/Career-cta.png"
         alt="Don't see the right fit"
@@ -637,7 +625,7 @@ const NoFitCard = () => {
         }}
       />
 
-      {/* Content — sits on the bottom blue half */}
+      {/* Content - sits on the bottom blue half */}
       <div className="dark-section relative z-10 flex flex-col items-center justify-end h-full px-8 pb-10 pt-52 text-center">
         <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-3">
           Don't see the right fit?
@@ -650,7 +638,7 @@ const NoFitCard = () => {
           Acespire in a way not listed above, we'd love to hear from you.
         </p>
         <a
-          href="https://hireon.acespireconsulting.com/apply/78"
+          href="https://hireon.acespireconsulting.com/apply/92"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-display font-bold text-sm transition-all duration-300 hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] active:scale-95"

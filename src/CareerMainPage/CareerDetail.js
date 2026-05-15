@@ -147,7 +147,7 @@ const CareerDetail = () => {
         <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-10">
           <div className="grid lg:grid-cols-[1fr_280px] gap-12 items-start">
 
-            {/* LEFT — article */}
+            {/* LEFT - article */}
             <div>
               {/* Summary */}
               <p
@@ -214,7 +214,7 @@ const CareerDetail = () => {
               </div>
             </div>
 
-            {/* RIGHT — sidebar */}
+            {/* RIGHT - sidebar */}
             <aside
               className="lg:sticky lg:top-28 space-y-5"
               style={{
@@ -287,7 +287,7 @@ const CareerDetail = () => {
                   We're always looking for exceptional talent.
                 </p>
                 <a
-                  href="https://hireon.acespireconsulting.com/apply/78"
+                  href="https://hireon.acespireconsulting.com/apply/92"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-2.5 bg-blue-accent hover:bg-blue-dark text-white text-xs font-display font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_16px_rgba(61,126,255,0.5)]"
